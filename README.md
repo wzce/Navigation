@@ -10,7 +10,7 @@ git clone https://github.com/wzce/Navigation
 # 数据库设置
 在本地机器建立数据库，名称navigation
 
-在navigation数据允许项目中的sql脚本进行建表
+在navigation数据运行项目中的sql脚本进行建表，在resource目录下
 
 修改resource目录下的application.properties文件中数据的用户名和密码为自己机器数据库的用户名和密码
 
