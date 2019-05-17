@@ -1,9 +1,13 @@
 # Navigation
 简单的导航网站后台
 
-#下载代码：
+# 环境
+Java1.8 mysql5.6及以上版本 Maven3
+
+# 下载代码
 git clone https://github.com/wzce/Navigation
 
+# 数据库设置
 在本地机器建立数据库，名称navigation
 
 在navigation数据允许项目中的sql脚本进行建表
@@ -12,7 +16,7 @@ git clone https://github.com/wzce/Navigation
 
 命令行进入项目目录Navigation
 
-依次执行：
+# 编译运行
 
 mvn clean install
 
