@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nju.software.usermanager.dao.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.nju.software.usermanager.domain.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="validation" jdbcType="INTEGER" property="validation" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="invitation_Count" jdbcType="INTEGER" property="invitationCount" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="weixin" jdbcType="VARCHAR" property="weixin" />
+    <result column="collect_Num" jdbcType="INTEGER" property="collectNum" />
+    <result column="activity_Num" jdbcType="VARCHAR" property="activityNum" />
+    <result column="verify_Code" jdbcType="VARCHAR" property="verifyCode" />
+    <result column="access_Token" jdbcType="VARCHAR" property="accessToken" />
+    <result column="expire_Time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="vip_Start_Time" jdbcType="TIMESTAMP" property="vipStartTime" />
+    <result column="vip_End_Time" jdbcType="TIMESTAMP" property="vipEndTime" />
+    <result column="business_Id" jdbcType="INTEGER" property="businessId" />
+    <result column="is_Vip" jdbcType="INTEGER" property="isVip" />
+    <result column="is_Admin" jdbcType="INTEGER" property="isAdmin" />
+    <result column="create_Time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_Time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_Time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="rong_Cloud_Token" jdbcType="VARCHAR" property="rongCloudToken" />
+    <result column="weChat_Open_Id" jdbcType="VARCHAR" property="wechatOpenId" />
+    <result column="weChat_Access_Token" jdbcType="VARCHAR" property="wechatAccessToken" />
+    <result column="weChat_Refresh_Token" jdbcType="VARCHAR" property="wechatRefreshToken" />
+    <result column="wx_Union_Id" jdbcType="VARCHAR" property="wxUnionId" />
+    <result column="outTradeNo" jdbcType="VARCHAR" property="outtradeno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="wx_Session_Key" jdbcType="VARCHAR" property="wxSessionKey" />
+    <result column="binding_Id" jdbcType="BIGINT" property="bindingId" />
+    <result column="last_Inform_Time" jdbcType="TIMESTAMP" property="lastInformTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.edu.nju.software.usermanager.domain.entity.User">
+    <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mobile, password, validation, nick_name, file, company, location, invitation_Count, 
+    sex, weixin, collect_Num, activity_Num, verify_Code, access_Token, expire_Time, vip_Start_Time, 
+    vip_End_Time, business_Id, is_Vip, is_Admin, create_Time, update_Time, delete_Time, 
+    delete_flag, rong_Cloud_Token, weChat_Open_Id, weChat_Access_Token, weChat_Refresh_Token, 
+    wx_Union_Id, outTradeNo, email, wx_Session_Key, binding_Id, last_Inform_Time
+  </sql>
+  <sql id="Blob_Column_List">
+    extend
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER} and delete_flag=0
+  </select>
+
+  <select id="selectAll"  resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+    where delete_flag=0
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.nju.software.usermanager.domain.entity.User">
+    insert into user (id, mobile, password, 
+      validation, nick_name, file, 
+      company, location, invitation_Count, 
+      sex, weixin, collect_Num, 
+      activity_Num, verify_Code, access_Token, 
+      expire_Time, vip_Start_Time, vip_End_Time, 
+      business_Id, is_Vip, is_Admin, 
+      create_Time, update_Time, delete_Time, 
+      delete_flag, rong_Cloud_Token, weChat_Open_Id, 
+      weChat_Access_Token, weChat_Refresh_Token, 
+      wx_Union_Id, outTradeNo, email, 
+      wx_Session_Key, binding_Id, last_Inform_Time, 
+      extend)
+    values (#{id,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{validation,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{file,jdbcType=VARCHAR}, 
+      #{company,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{invitationCount,jdbcType=INTEGER}, 
+      #{sex,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR}, #{collectNum,jdbcType=INTEGER}, 
+      #{activityNum,jdbcType=VARCHAR}, #{verifyCode,jdbcType=VARCHAR}, #{accessToken,jdbcType=VARCHAR}, 
+      #{expireTime,jdbcType=TIMESTAMP}, #{vipStartTime,jdbcType=TIMESTAMP}, #{vipEndTime,jdbcType=TIMESTAMP}, 
+      #{businessId,jdbcType=INTEGER}, #{isVip,jdbcType=INTEGER}, #{isAdmin,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteFlag,jdbcType=INTEGER}, #{rongCloudToken,jdbcType=VARCHAR}, #{wechatOpenId,jdbcType=VARCHAR}, 
+      #{wechatAccessToken,jdbcType=VARCHAR}, #{wechatRefreshToken,jdbcType=VARCHAR}, 
+      #{wxUnionId,jdbcType=VARCHAR}, #{outtradeno,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{wxSessionKey,jdbcType=VARCHAR}, #{bindingId,jdbcType=BIGINT}, #{lastInformTime,jdbcType=TIMESTAMP}, 
+      #{extend,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.nju.software.usermanager.domain.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="validation != null">
+        validation,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="file != null">
+        file,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="invitationCount != null">
+        invitation_Count,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="weixin != null">
+        weixin,
+      </if>
+      <if test="collectNum != null">
+        collect_Num,
+      </if>
+      <if test="activityNum != null">
+        activity_Num,
+      </if>
+      <if test="verifyCode != null">
+        verify_Code,
+      </if>
+      <if test="accessToken != null">
+        access_Token,
+      </if>
+      <if test="expireTime != null">
+        expire_Time,
+      </if>
+      <if test="vipStartTime != null">
+        vip_Start_Time,
+      </if>
+      <if test="vipEndTime != null">
+        vip_End_Time,
+      </if>
+      <if test="businessId != null">
+        business_Id,
+      </if>
+      <if test="isVip != null">
+        is_Vip,
+      </if>
+      <if test="isAdmin != null">
+        is_Admin,
+      </if>
+      <if test="createTime != null">
+        create_Time,
+      </if>
+      <if test="updateTime != null">
+        update_Time,
+      </if>
+      <if test="deleteTime != null">
+        delete_Time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+      <if test="rongCloudToken != null">
+        rong_Cloud_Token,
+      </if>
+      <if test="wechatOpenId != null">
+        weChat_Open_Id,
+      </if>
+      <if test="wechatAccessToken != null">
+        weChat_Access_Token,
+      </if>
+      <if test="wechatRefreshToken != null">
+        weChat_Refresh_Token,
+      </if>
+      <if test="wxUnionId != null">
+        wx_Union_Id,
+      </if>
+      <if test="outtradeno != null">
+        outTradeNo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="wxSessionKey != null">
+        wx_Session_Key,
+      </if>
+      <if test="bindingId != null">
+        binding_Id,
+      </if>
+      <if test="lastInformTime != null">
+        last_Inform_Time,
+      </if>
+      <if test="extend != null">
+        extend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="validation != null">
+        #{validation,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null">
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationCount != null">
+        #{invitationCount,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null">
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="collectNum != null">
+        #{collectNum,jdbcType=INTEGER},
+      </if>
+      <if test="activityNum != null">
+        #{activityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyCode != null">
+        #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null">
+        #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipStartTime != null">
+        #{vipStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipEndTime != null">
+        #{vipEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="isVip != null">
+        #{isVip,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="rongCloudToken != null">
+        #{rongCloudToken,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatOpenId != null">
+        #{wechatOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAccessToken != null">
+        #{wechatAccessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatRefreshToken != null">
+        #{wechatRefreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUnionId != null">
+        #{wxUnionId,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeno != null">
+        #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSessionKey != null">
+        #{wxSessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingId != null">
+        #{bindingId,jdbcType=BIGINT},
+      </if>
+      <if test="lastInformTime != null">
+        #{lastInformTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extend != null">
+        #{extend,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nju.software.usermanager.domain.entity.User">
+    update user
+    <set>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="validation != null">
+        validation = #{validation,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null">
+        file = #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationCount != null">
+        invitation_Count = #{invitationCount,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null">
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="collectNum != null">
+        collect_Num = #{collectNum,jdbcType=INTEGER},
+      </if>
+      <if test="activityNum != null">
+        activity_Num = #{activityNum,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyCode != null">
+        verify_Code = #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null">
+        access_Token = #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        expire_Time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipStartTime != null">
+        vip_Start_Time = #{vipStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipEndTime != null">
+        vip_End_Time = #{vipEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessId != null">
+        business_Id = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="isVip != null">
+        is_Vip = #{isVip,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        is_Admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_Time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_Time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_Time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="rongCloudToken != null">
+        rong_Cloud_Token = #{rongCloudToken,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatOpenId != null">
+        weChat_Open_Id = #{wechatOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAccessToken != null">
+        weChat_Access_Token = #{wechatAccessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatRefreshToken != null">
+        weChat_Refresh_Token = #{wechatRefreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUnionId != null">
+        wx_Union_Id = #{wxUnionId,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeno != null">
+        outTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSessionKey != null">
+        wx_Session_Key = #{wxSessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingId != null">
+        binding_Id = #{bindingId,jdbcType=BIGINT},
+      </if>
+      <if test="lastInformTime != null">
+        last_Inform_Time = #{lastInformTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extend != null">
+        extend = #{extend,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.edu.nju.software.usermanager.domain.entity.User">
+    update user
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      validation = #{validation,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      file = #{file,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      invitation_Count = #{invitationCount,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      collect_Num = #{collectNum,jdbcType=INTEGER},
+      activity_Num = #{activityNum,jdbcType=VARCHAR},
+      verify_Code = #{verifyCode,jdbcType=VARCHAR},
+      access_Token = #{accessToken,jdbcType=VARCHAR},
+      expire_Time = #{expireTime,jdbcType=TIMESTAMP},
+      vip_Start_Time = #{vipStartTime,jdbcType=TIMESTAMP},
+      vip_End_Time = #{vipEndTime,jdbcType=TIMESTAMP},
+      business_Id = #{businessId,jdbcType=INTEGER},
+      is_Vip = #{isVip,jdbcType=INTEGER},
+      is_Admin = #{isAdmin,jdbcType=INTEGER},
+      create_Time = #{createTime,jdbcType=TIMESTAMP},
+      update_Time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_Time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      rong_Cloud_Token = #{rongCloudToken,jdbcType=VARCHAR},
+      weChat_Open_Id = #{wechatOpenId,jdbcType=VARCHAR},
+      weChat_Access_Token = #{wechatAccessToken,jdbcType=VARCHAR},
+      weChat_Refresh_Token = #{wechatRefreshToken,jdbcType=VARCHAR},
+      wx_Union_Id = #{wxUnionId,jdbcType=VARCHAR},
+      outTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      wx_Session_Key = #{wxSessionKey,jdbcType=VARCHAR},
+      binding_Id = #{bindingId,jdbcType=BIGINT},
+      last_Inform_Time = #{lastInformTime,jdbcType=TIMESTAMP},
+      extend = #{extend,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nju.software.usermanager.domain.entity.User">
+    update user
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      validation = #{validation,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      file = #{file,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      invitation_Count = #{invitationCount,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      collect_Num = #{collectNum,jdbcType=INTEGER},
+      activity_Num = #{activityNum,jdbcType=VARCHAR},
+      verify_Code = #{verifyCode,jdbcType=VARCHAR},
+      access_Token = #{accessToken,jdbcType=VARCHAR},
+      expire_Time = #{expireTime,jdbcType=TIMESTAMP},
+      vip_Start_Time = #{vipStartTime,jdbcType=TIMESTAMP},
+      vip_End_Time = #{vipEndTime,jdbcType=TIMESTAMP},
+      business_Id = #{businessId,jdbcType=INTEGER},
+      is_Vip = #{isVip,jdbcType=INTEGER},
+      is_Admin = #{isAdmin,jdbcType=INTEGER},
+      create_Time = #{createTime,jdbcType=TIMESTAMP},
+      update_Time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_Time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      rong_Cloud_Token = #{rongCloudToken,jdbcType=VARCHAR},
+      weChat_Open_Id = #{wechatOpenId,jdbcType=VARCHAR},
+      weChat_Access_Token = #{wechatAccessToken,jdbcType=VARCHAR},
+      weChat_Refresh_Token = #{wechatRefreshToken,jdbcType=VARCHAR},
+      wx_Union_Id = #{wxUnionId,jdbcType=VARCHAR},
+      outTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      wx_Session_Key = #{wxSessionKey,jdbcType=VARCHAR},
+      binding_Id = #{bindingId,jdbcType=BIGINT},
+      last_Inform_Time = #{lastInformTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

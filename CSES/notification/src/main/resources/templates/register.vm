@@ -1,0 +1,11 @@
+<html>
+    <body>
+    <h3>【心竺公考】</h3>
+
+    <div>
+        <h1> <a href="${url}">${url}</a></h1>
+        您本次的注册验证码是  <span style="color:blue">${code}</span>
+    </div>
+
+    </body>
+</html>

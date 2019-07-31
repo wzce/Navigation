@@ -1,0 +1,9 @@
+server:
+  port: 10001
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://111.231.57.74:8761/eureka/

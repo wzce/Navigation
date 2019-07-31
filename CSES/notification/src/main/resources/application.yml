@@ -1,0 +1,50 @@
+
+server:
+  port: 11002
+
+spring:
+  application:
+    name: notification
+  cloud:
+    config:
+      uri: http://config:8888
+      fail-fast: true
+      password: ${CONFIG_SERVICE_PASSWORD}
+      username: user
+
+  velocity:
+      resource-loader-path: classpath:/templates/
+      charset: UTF-8
+
+  mail:
+    host: smtp.qq.com
+    username: 3104527459@qq.com
+#    password: weizuce13 #网易的
+    password: bfkoxfmphlxnddgd
+#    port: 465
+    default-encoding: UTF-8
+    transport:
+      protocol: smtp
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+
+management:
+  security:
+    enabled: false
+
+#eureka:
+#  instance:
+#    preferIpAddress: true
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/

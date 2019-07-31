@@ -1,0 +1,36 @@
+server:
+  port: 11002
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 3104527459@qq.com
+#    password: weizuce13 #网易的
+    password: bfkoxfmphlxnddgd
+#    port: 465
+    default-encoding: UTF-8
+    transport:
+      protocol: smtp
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+
+management:
+  security:
+    enabled: false
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
